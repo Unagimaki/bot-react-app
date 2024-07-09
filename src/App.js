@@ -1,6 +1,8 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { createTranslate } from './handlers/createTranslate';
+import { Route, Routes } from 'react-router-dom';
+import { Score } from './components/Score/score';
 
 function App() {
   const [translatedText, setTranslatedText] = useState('');
@@ -44,6 +46,9 @@ function App() {
           {translatedText}
         </div>
       }
+      <Routes>
+        <Route path='/score' element={<Score/>}/>
+      </Routes>
     </div>
   );
 }
