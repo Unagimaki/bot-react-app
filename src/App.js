@@ -26,6 +26,7 @@ function App() {
 
   return (
     <div>
+      <p>Original: {text || 'no text'}</p>
       {loading ? (
         <p>Loading...</p>
       ) : (
