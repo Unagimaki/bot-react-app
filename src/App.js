@@ -4,6 +4,7 @@ import { createTranslate } from './handlers/createTranslate';
 
 function App() {
   const [translatedText, setTranslatedText] = useState('');
+  const [originalText, setoriginalText] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -11,6 +12,7 @@ function App() {
     const text = urlParams.get('text');
 
     if (text) {
+      setoriginalText(text)
       setLoading(true);
       createTranslate(text)
         .then((result) => {
@@ -26,7 +28,7 @@ function App() {
 
   return (
     <div>
-      <p>Original: {text || 'no text'}</p>
+      <p>Original: {originalText || 'no text'}</p>
       {loading ? (
         <p>Loading...</p>
       ) : (
