@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--tg-theme-bg-color);
+  color: var(--tg-theme-text-color);
+}
+
+button {
+  border: none;
+  outline: none;
+}
+
+.ul {
+  padding: 1vw;
+}
+.ul li {
+  display: flex;
+  margin-right: 10px;
+  align-items: center;
+}
+.li:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.line {
+  width: 70px;
+  height: 20px;
+  border: 2px solid green;
+  padding-left: 10px;
+  border-radius: 10px;
+  background: transparent;
+  background-size: 0% 100%;
+  animation: fill 2s ease-out forwards;
+}
+
+@keyframes fill {
+  0% {
+    background: linear-gradient(to right, green 0%, transparent 100%);
+    background-size: 0% 100%;
+  }
+  100% {
+    background: linear-gradient(to right, green 100%, transparent 100%);
+    background-size: 100% 100%;
+  }
+}
