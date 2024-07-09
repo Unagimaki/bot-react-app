@@ -26,6 +26,9 @@ function App() {
         });
     }
   }, []);
+  const handleClick = () => {
+    setShowTranslate(!showTranslate);
+  };
 
   return (
     <div>
@@ -33,7 +36,7 @@ function App() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <button>Show translate</button>
+        <button onClick={handleClick}>Show translate</button>
       )}
       <br/>
       {showTranslate &&
