@@ -5,6 +5,7 @@ import { createTranslate } from './handlers/createTranslate';
 function App() {
   const [translatedText, setTranslatedText] = useState('');
   const [originalText, setoriginalText] = useState('');
+  const [showTranslate, setShowTranslate] = useState(false)
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -32,8 +33,14 @@ function App() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <p>Translated text: {translatedText}</p>
+        <button>Show translate</button>
       )}
+      <br/>
+      {showTranslate &&
+        <div>
+          {translatedText}
+        </div>
+      }
     </div>
   );
 }
