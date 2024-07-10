@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const createTranslate = async (text = 'Hello World') => {
+export const createTranslate = async (text = 'Hello World', language = 'en') => {
     const options = {
         method: 'POST',
         url: 'https://deep-translate1.p.rapidapi.com/language/translate/v2',
@@ -12,7 +12,7 @@ export const createTranslate = async (text = 'Hello World') => {
         data: {
           q: text,
           source: 'en',
-          target: 'ru'
+          target: language
         }
       };
       
