@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { createTranslate } from './handlers/createTranslate';
 import { Route, Routes } from 'react-router-dom';
 import { Score } from './components/Score/score';
+import { Button } from './components/Button/Button';
 
 function App() {
   const [translatedText, setTranslatedText] = useState('');
@@ -35,10 +36,11 @@ function App() {
   return (
     <div>
       <p>Original: {originalText || 'no text'}</p>
+      <br/>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <button onClick={handleClick}>Show translate</button>
+        <Button handleClick={handleClick}/>
       )}
       <br/>
       {showTranslate &&
@@ -46,9 +48,6 @@ function App() {
           {translatedText}
         </div>
       }
-      <Routes>
-        <Route path='/score' element={<Score/>}/>
-      </Routes>
     </div>
   );
 }

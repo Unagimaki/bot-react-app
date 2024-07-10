@@ -1,10 +1,10 @@
 import './button.css'
 
-export const Button = ({text}) => {
+export const Button = ({handleClick}) => {
     return(
-        <button className='button'>
-            {text}
-        </button>
+        <>
+            <a onClick={() => handleClick()} href="#" class="btn-flip" data-back="Translated" data-front="Translate"></a>
+        </>
     )
 }
 
