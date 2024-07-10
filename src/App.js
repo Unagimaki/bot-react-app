@@ -45,7 +45,7 @@ function App() {
         <Button handleClick={handleClick}/>
       <br/>
       {showTranslate &&
-        <div>
+        <div className='translatedText'>
           {loading ? 'loading' : translatedText}
         </div>
       }
