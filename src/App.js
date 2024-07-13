@@ -1,55 +1,50 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
-import { createTranslate } from './handlers/createTranslate';
+import React, { useEffect, useState } from 'react';
+import { getTranslate } from './handlers/getTranslate';
 import { Button } from './components/Button/Button';
 import { Select } from './components/Select/Select';
+import { WordHover } from './components/wordHover/WordHover';
 
 function App() {
-  const [translatedText, setTranslatedText] = useState('');
-  const [originalText, setoriginalText] = useState('');
-  const [showTranslate, setShowTranslate] = useState(false)
-  const [loading, setLoading] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('');
 
+  const [state, setState] = useState({
+    translatedText: '',
+    originalText: 'hello world from Michael',
+    loading: false,
+    selectedLanguage: 'ru',
+    showAfter: false
+  })
+  const words = state.originalText.split(' ')
+  
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const text = urlParams.get('text');
-    // const text = 'Hello'
+    const url = new URL(window.location.href);
+    const text = url.searchParams.get('text');
+    setState({originalText: text})
+  }, [])
+  const startTranslate = () => {
+    setState({loading: true})
+    getTranslate(state.originalText, state.selectedLanguage)
+     .then(result => setState({...state, translatedText: result, loading: false, showAfter: true}))
+     .catch(error => console.error(error))
+  }
 
-    if (text) {
-      setoriginalText(text)
-      setLoading(true);
-      createTranslate(text, selectedLanguage)
-        .then((result) => {
-          setTranslatedText(result);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error(error);
-          setLoading(false);
-        });
-    }
-  }, [selectedLanguage]);
-  const handleClick = () => {
-    setShowTranslate(!showTranslate);
-  }
-  const handleLanguageChange = (language) => {
-    setLoading(true)
-    setSelectedLanguage(language)
-  }
 
   return (
-    <div>
-      <p>Original: {originalText || 'no text'}</p>
-      <br/>
-        <Button handleClick={handleClick}/>
-      <br/>
-      {showTranslate &&
-        <div className='translatedText'>
-          {loading ? 'loading' : translatedText}
-        </div>
+    <div className='container'>
+      <div className='original_text'>
+      {
+        words.map((word, index) => (
+          <WordHover key={index} word={word} />
+        ))
       }
-      <Select onLanguageChange={handleLanguageChange}/>
+      </div>
+      <Button showAfter={state.showAfter} handleClick={() => startTranslate()} />
+      <div className='translatedText'>
+        {state.loading ? 'loading' : state.translatedText}
+      </div>
+      <Select onLanguageChange={(lan) => setState({selectedLanguage: lan})} />
+      
+
     </div>
   );
 }

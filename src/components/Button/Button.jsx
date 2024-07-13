@@ -1,9 +1,8 @@
 import './button.css'
 
-export const Button = ({handleClick}) => {
+export const Button = ({showAfter, handleClick}) => {
     return(
-        <button onClick={() => handleClick()} className="btn-flip" data-back="Translated" data-front="Translate">
-        </button>
+        <button className={`btn-flip ${showAfter ? 'show-after' : ''}`} data-back="Translated" data-front="Translate" onClick={handleClick}/>
     )
 }
 

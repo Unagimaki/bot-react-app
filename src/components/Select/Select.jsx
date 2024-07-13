@@ -12,6 +12,7 @@ export const Select = ({onLanguageChange }) => {
 
             <div className="styled-select">
                 <select onChange={handleLanguageChange}>
+                    <option datatype='ru'>Русский</option>
                     <option datatype='en'>English</option>
                     <option datatype='de'>Deutsch</option>
                     <option datatype='fr'>Français</option>

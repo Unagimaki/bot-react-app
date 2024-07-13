@@ -15,6 +15,19 @@ button {
   border: none;
   outline: none;
 }
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.original_text {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  border: 1px solid black;
+}
+
 
 .translatedText {
   margin-bottom: 30px;
