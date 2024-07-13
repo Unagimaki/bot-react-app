@@ -28,7 +28,7 @@ export const WordHover = ({ word }) => {
     try {
         setLoading(true)
         const response = await getDictionary(word)
-        setResult(response.data[0].phonetic)
+        setResult((response.data[0].phonetic).slice(1, -1))
         setLoading(false)
     } catch (error) {
         setLoading(false)
