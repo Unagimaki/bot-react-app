@@ -1,45 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import './wordHover.css';
 import { getDictionary } from '../../handlers/getDictionary';
-import { Loader } from '../Loader/Loader';
 
 export const WordHover = ({ word }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
   const [result, setResult] = useState('no res')
-  const [loading, setLoading] = useState('false')
+  useEffect(() => {
+    (async function() {
+      const response = await getDictionary(word)
+      try {
+        setResult(response.data[0].phonetic)
+      } catch (error) {
+          setResult('no result')
+      } 
+    })()
+  }, [])
 
   useEffect(() => {
     const handleMouseMove = (event) => {
       if (showTooltip) {
         setTooltipPosition({ x: event.clientX, y: event.clientY });
       }
-    };
+    }
 
     document.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, [showTooltip]);
+    }
+  }, [showTooltip])
 
   const handleMouseOver = async () => {
-    setShowTooltip(true);
-    try {
-        setLoading(true)
-        const response = await getDictionary(word)
-        setResult((response.data[0].phonetic).slice(1, -1))
-        setLoading(false)
-    } catch (error) {
-        setLoading(false)
-        console.log(error)
-        setResult('no transcrition')
-    }
-  };
+    setShowTooltip(true)
+  }
 
   const handleMouseOut = () => {
-    setShowTooltip(false);
-  };
+    setShowTooltip(false)
+  }
 
   return (
     <div className='word_container'
@@ -57,11 +55,12 @@ export const WordHover = ({ word }) => {
             border: '1px solid #ddd',
             padding: '5px',
             borderRadius: '5px',
+            zIndex: '99'
           }}
         >
             <p className=''>
                 {
-                    loading ? <Loader/> : result
+                  result || 'no result'
                 }
             </p>
         </div>

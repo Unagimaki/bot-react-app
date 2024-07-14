@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getTranslate } from './handlers/getTranslate';
 import { Button } from './components/Button/Button';
 import { Select } from './components/Select/Select';
@@ -14,14 +14,13 @@ function App() {
     selectedLanguage: 'ru',
     showAfter: false
   })
-  console.log(state.originalText);
   const words = state.originalText.split(' ')
   
-  // useEffect(() => {
-  //   const url = new URL(window.location.href);
-  //   const text = url.searchParams.get('text');
-  //   setState({originalText: text})
-  // }, [])
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const text = url.searchParams.get('text');
+    setState({...state, originalText: text})
+  }, [])
 
   const startTranslate = () => {
     setState({...state, loading: true})
@@ -29,6 +28,9 @@ function App() {
      .then(result => setState({...state, translatedText: result, loading: false, showAfter: true}))
      .catch(error => console.error(error))
   }
+  useEffect(() => {
+    startTranslate()
+  }, [state.selectedLanguage])
 
 
   return (
@@ -44,7 +46,9 @@ function App() {
       <div className='translatedText'>
         {state.loading ? 'loading' : state.translatedText}
       </div>
-      <Select onLanguageChange={lan => setState({selectedLanguage: lan})} />
+      <Select
+        onLanguageChange={lan => setState({...state, selectedLanguage: lan})}
+      />
       
 
     </div>

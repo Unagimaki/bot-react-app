@@ -4,6 +4,7 @@ export const Select = ({onLanguageChange}) => {
     const handleLanguageChange = (event) => {
         const selectedOption = event.target.options[event.target.selectedIndex]
         const datatype = selectedOption.getAttribute('datatype')
+        console.log(datatype);
         onLanguageChange(datatype)
     }
     return(

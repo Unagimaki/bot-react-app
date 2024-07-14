@@ -14,6 +14,6 @@ export const getDictionary = async (word) => {
       const response = await axios.request(options)
       return response
     } catch (error) {
-      console.error(error);
+      console.error('error from getDictionary: ' + error);
     }
 }
