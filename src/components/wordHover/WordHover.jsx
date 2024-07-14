@@ -49,7 +49,6 @@ export const WordHover = ({ word }) => {
             left: tooltipPosition.x,
             backgroundColor: 'white',
             border: '1px solid #ddd',
-            padding: '5px',
             borderRadius: '5px',
             zIndex: '99'
           }}
