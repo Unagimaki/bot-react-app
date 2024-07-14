@@ -54,7 +54,7 @@ export const WordHover = ({ word }) => {
             zIndex: '99'
           }}
         >
-            <p className=''>
+            <p className='word_result'>
                 {
                   result || 'no result'
                 }
