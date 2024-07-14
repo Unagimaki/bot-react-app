@@ -6,6 +6,7 @@ export const WordHover = ({ word }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
   const [result, setResult] = useState('no res')
+
   useEffect(() => {
     (async function() {
       const response = await getDictionary(word)
@@ -15,7 +16,7 @@ export const WordHover = ({ word }) => {
           setResult('no result')
       } 
     })()
-  }, [])
+  }, [word])
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -31,13 +32,8 @@ export const WordHover = ({ word }) => {
     }
   }, [showTooltip])
 
-  const handleMouseOver = async () => {
-    setShowTooltip(true)
-  }
-
-  const handleMouseOut = () => {
-    setShowTooltip(false)
-  }
+  const handleMouseOver = () => setShowTooltip(true) 
+  const handleMouseOut = () => setShowTooltip(false)
 
   return (
     <div className='word_container'

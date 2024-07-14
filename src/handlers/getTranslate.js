@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const getTranslate = async (text = 'Hello World', language = 'ru') => {
+  console.log('call');
   const options = {
     method: 'POST',
     url: 'https://deep-translate1.p.rapidapi.com/language/translate/v2',

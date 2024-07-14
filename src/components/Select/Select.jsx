@@ -1,11 +1,12 @@
 import './select.css';
 
-export const Select = ({onLanguageChange}) => {
+export const Select = ({onLanguageChange, setNewLanguage}) => {
     const handleLanguageChange = (event) => {
         const selectedOption = event.target.options[event.target.selectedIndex]
         const datatype = selectedOption.getAttribute('datatype')
         console.log(datatype);
         onLanguageChange(datatype)
+        setNewLanguage()
     }
     return(
         <div>
