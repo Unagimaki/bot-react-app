@@ -25,6 +25,7 @@ button {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  color: var(--tg-theme-text-color);
 }
 
 
