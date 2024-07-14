@@ -1,6 +1,6 @@
 import './select.css';
 
-export const Select = ({onLanguageChange }) => {
+export const Select = ({onLanguageChange}) => {
     const handleLanguageChange = (event) => {
         const selectedOption = event.target.options[event.target.selectedIndex]
         const datatype = selectedOption.getAttribute('datatype')

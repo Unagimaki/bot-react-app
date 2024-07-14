@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const getDictionary = async (word) => {
-  console.log('word: ' + word);
     const options = {
         method: 'GET',
         url: `https://e2e-dictionary.p.rapidapi.com/dictionary/${word}`,
@@ -12,9 +11,9 @@ export const getDictionary = async (word) => {
     }
       
     try {
-          const response = await axios.request(options)
-          return response
+      const response = await axios.request(options)
+      return response
     } catch (error) {
-          console.error(error);
+      console.error(error);
     }
 }

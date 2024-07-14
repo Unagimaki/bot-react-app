@@ -25,7 +25,6 @@ button {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  border: 1px solid black;
 }
 
 

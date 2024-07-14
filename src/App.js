@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { getTranslate } from './handlers/getTranslate';
 import { Button } from './components/Button/Button';
 import { Select } from './components/Select/Select';
@@ -14,15 +14,17 @@ function App() {
     selectedLanguage: 'ru',
     showAfter: false
   })
+  console.log(state.originalText);
   const words = state.originalText.split(' ')
   
-  useEffect(() => {
-    const url = new URL(window.location.href);
-    const text = url.searchParams.get('text');
-    setState({originalText: text})
-  }, [])
+  // useEffect(() => {
+  //   const url = new URL(window.location.href);
+  //   const text = url.searchParams.get('text');
+  //   setState({originalText: text})
+  // }, [])
+
   const startTranslate = () => {
-    setState({loading: true})
+    setState({...state, loading: true})
     getTranslate(state.originalText, state.selectedLanguage)
      .then(result => setState({...state, translatedText: result, loading: false, showAfter: true}))
      .catch(error => console.error(error))
@@ -42,7 +44,7 @@ function App() {
       <div className='translatedText'>
         {state.loading ? 'loading' : state.translatedText}
       </div>
-      <Select onLanguageChange={(lan) => setState({selectedLanguage: lan})} />
+      <Select onLanguageChange={lan => setState({selectedLanguage: lan})} />
       
 
     </div>

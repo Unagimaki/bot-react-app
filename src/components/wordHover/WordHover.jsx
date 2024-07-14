@@ -59,7 +59,7 @@ export const WordHover = ({ word }) => {
             borderRadius: '5px',
           }}
         >
-            <p>
+            <p className=''>
                 {
                     loading ? <Loader/> : result
                 }
