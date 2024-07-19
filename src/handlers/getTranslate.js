@@ -11,7 +11,7 @@ export const getTranslate = async (text = 'Hello World', language = 'ru') => {
       'Content-Type': 'application/json'
     },
     data: {
-      q: text,
+      q: 'some text',
       source: 'en',
       target: language
     }
