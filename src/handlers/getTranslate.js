@@ -19,8 +19,9 @@ export const getTranslate = async (text = 'Hello World', language = 'ru') => {
   
   try {
     const response = await axios.request(options)
+    alert(response)
     return response.data.translations.translatedText
   } catch (error) {
-    console.error('error from getTranslate: ' + error);
+    console.error('translate error');
   }
 }
