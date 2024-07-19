@@ -22,6 +22,6 @@ export const getTranslate = async (text = 'Hello World', language = 'ru') => {
     alert(response)
     return response.data.translations.translatedText
   } catch (error) {
-    console.error('translate error');
+    alert('translate error');
   }
 }
